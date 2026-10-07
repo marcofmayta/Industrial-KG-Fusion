@@ -1,0 +1,9 @@
+{
+  "checks_passed": 7,
+  "checks_total": 7,
+  "edges": 621865,
+  "nodes": 61278,
+  "scope": "ontology-only integration of independent datasets; no record-level asset links",
+  "sensor_events": 2934,
+  "text_work_orders": 48613
+}

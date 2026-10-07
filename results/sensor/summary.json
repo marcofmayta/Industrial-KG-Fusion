@@ -1,0 +1,28 @@
+{
+  "calibration": {
+    "baseline_end": "2020-03-01",
+    "baseline_rows": 214850,
+    "baseline_start": "2020-02-01",
+    "constant_channel_rule": "binary novelty score 2 for a change from a constant baseline",
+    "coverage_quantile": 0.05,
+    "merge_gap_minutes": 10,
+    "minimum_observations": 30,
+    "operating_regime": "COMP",
+    "sensor_quantile": 0.999,
+    "window_freq": "5min",
+    "window_score_quantile": 0.9,
+    "window_threshold": 0.9932382133995042,
+    "window_threshold_quantile": 0.995
+  },
+  "candidate_fraction": 0.23078797329564835,
+  "candidate_windows": 9472,
+  "eligible_windows": 41042,
+  "event_span_hours": 1110.3333333333333,
+  "eventized_observed_hours": 789.3333333333334,
+  "events": 2934,
+  "failure_source": "https://archive.ics.uci.edu/dataset/791/metropt+3+dataset",
+  "failure_windows": 4,
+  "failures_overlapped": 4,
+  "interpretation": "high-sensitivity eventization; not a validated final anomaly detector",
+  "unobserved_or_sparse_windows": 13283
+}

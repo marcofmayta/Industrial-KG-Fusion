@@ -1,0 +1,5 @@
+failure_id,start,end,overlapping_events,detected_during_failure,observed_windows,candidate_windows
+F1,2020-04-18 00:00:00,2020-04-18 23:59:00,1,True,283,283
+F2,2020-05-29 23:30:00,2020-05-30 06:00:00,1,True,78,78
+F3,2020-06-05 10:00:00,2020-06-07 14:30:00,3,True,569,569
+F4,2020-07-15 14:30:00,2020-07-15 19:00:00,1,True,53,53

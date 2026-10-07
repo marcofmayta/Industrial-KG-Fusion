@@ -1,0 +1,15 @@
+{
+  "artifacts_checked": 9,
+  "identical": true,
+  "sha256": {
+    "confirmation_metrics.csv": "f8617ba552134109c3431a578e41b80ded9656a055fc073ba163552ffaa4866b",
+    "confirmation_per_query.csv": "239a67bad03fffdd4040a63e0440886cc3a87a77bc94fabbc3ed57702b55ee7e",
+    "confirmation_queries.csv": "f7fda6a8e4027f4feafc023ccac4dda8bcc8b2f61d76006fa09798923f3dbc93",
+    "development_metrics.csv": "5c26f126f23ade4ddedd2ce5632a5f88eb82b8745503d71e1c4f5d10a4534369",
+    "development_per_query.csv": "fa3cac7e5b1b50704c0747f35f3df9f67caab40cceeaf98eb0ac22193ad21b22",
+    "locked_selection.json": "426193f60c66d9ee846dd83e2d1f5cb83290779474061fab5ada296719c0b0f3",
+    "paired_differences.csv": "2229593695eff06261d352b84f7bee732038f1a07869bb66479aa1155b829811",
+    "protocol.json": "2d6918d4ff2a62d0d05c02a2126b799322723f825775e6f22154528c7cd0b8cc",
+    "target_audit.json": "9554e2c60efbb3cab5db982a2f42e2eadeae5822b10800fd7998c52ccc4ca717"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "caveat": "Current upstream source is diagnostic evidence; frozen sample upstream revision is unknown.",
+  "generator_observation": "Equipment_ID is mutated by iteration; copied description fields are not updated.",
+  "generator_url": "https://github.com/jvachier/industrial-maintenance-synthetic-data/blob/main/src/generators/maintenance_generator.py",
+  "identifier_concordance_fraction": 0.0067070350279635005,
+  "valid_records": 47562
+}

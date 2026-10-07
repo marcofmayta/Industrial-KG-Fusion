@@ -1,0 +1,11 @@
+{
+  "maintenance_origin": {
+    "dataset": "Jvachier/industrial-maintenance-synthetic",
+    "local_snapshot": "maintenance_sample.parquet; contains original fields and legacy combined_text/text_length discarded on load",
+    "reproduction": "reuse this fixed file and verify SHA-256; a fresh stream is not an equivalent sample",
+    "sampling": "legacy streaming shuffle seed 42, buffer 100000, take 50000",
+    "upstream_revision": "unknown; not reconstructed"
+  },
+  "maintenance_sha256": "4234c428f369d64d75f698ff99146f3ed830351433c501654b061abded6fa38b",
+  "metropt3_sha256": "db30ccb4ea402e3c8bf2c99db06e288d4f2a772f6928f9dbe26a920d69793e24"
+}

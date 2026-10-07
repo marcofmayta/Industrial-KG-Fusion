@@ -1,0 +1,10 @@
+{
+  "confirmation_not_used_for_selection": true,
+  "selected": "word_character",
+  "selection_metric": "mrr@50",
+  "weights": [
+    0.5,
+    0.5,
+    0
+  ]
+}

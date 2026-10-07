@@ -1,0 +1,18 @@
+{
+  "evidence_level": "laboratory research prototype using synthetic maintenance records",
+  "grade_3_never_assigned": true,
+  "labels_independent": false,
+  "limitations": [
+    "Lexical agreement cannot validate retrieval and can favor lexical methods.",
+    "Equipment prefixes are descriptive proxies, not validated physical identities.",
+    "No human annotation, external validation, diagnosis or industrial benefit established.",
+    "Development and confirmation are reported separately; no tuning or winner selection from these labels."
+  ],
+  "pairs": 810,
+  "safety_assessment": "all uncertain; no safety validation performed",
+  "status": "exploratory_automatic_screen_only",
+  "thresholds": {
+    "near_identical": 0.9,
+    "partially_related": 0.5
+  }
+}

@@ -1,0 +1,7 @@
+review_split,method,precision_at_10,pooled_ndcg_at_10,uncertain_fraction
+confirmation,character,0.9349999999999999,0.9856816600426388,1.0
+confirmation,graph_idf,0.27999999999999997,0.30387358357168914,1.0
+confirmation,word,0.9199999999999999,0.9783548511850881,1.0
+development,character,0.905,0.9806344517388483,1.0
+development,graph_idf,0.385,0.4563908087297975,1.0
+development,word,0.8949999999999999,0.9665194989365966,1.0

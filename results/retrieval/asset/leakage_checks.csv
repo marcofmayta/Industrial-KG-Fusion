@@ -1,0 +1,9 @@
+check,passed
+structured_target_validated,True
+query_candidate_rows_disjoint,True
+query_candidate_work_orders_disjoint,True
+numeric_identifiers_masked,True
+target_and_asset_mentions_excluded_from_graph_features,True
+same_template_candidates_excluded,True
+complete_eligible_candidate_pool,True
+graph_ablation_without_failure_mode,True

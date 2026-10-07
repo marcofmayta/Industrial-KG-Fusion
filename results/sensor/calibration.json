@@ -1,0 +1,15 @@
+{
+  "baseline_end": "2020-03-01",
+  "baseline_rows": 214850,
+  "baseline_start": "2020-02-01",
+  "constant_channel_rule": "binary novelty score 2 for a change from a constant baseline",
+  "coverage_quantile": 0.05,
+  "merge_gap_minutes": 10,
+  "minimum_observations": 30,
+  "operating_regime": "COMP",
+  "sensor_quantile": 0.999,
+  "window_freq": "5min",
+  "window_score_quantile": 0.9,
+  "window_threshold": 0.9932382133995042,
+  "window_threshold_quantile": 0.995
+}

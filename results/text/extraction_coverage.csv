@@ -1,0 +1,6 @@
+entity_type,records_with_entity,coverage
+equipment_type,27207,0.556949846468782
+failure_mode,15347,0.3141658137154555
+component,38449,0.7870829068577277
+maintenance_action,47709,0.9766427840327533
+asset_mention,47247,0.9671852610030707

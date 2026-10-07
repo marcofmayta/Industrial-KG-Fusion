@@ -1,0 +1,5 @@
+concept,metropt3,maintenance,integration
+Asset,One real compressor APU,Many synthetic Equipment_ID values,shared industrial classes
+Time,2020 sensor timestamps,synthetic lifecycle dates,independent timelines
+Observation,15 sensor channels,descriptions and structured fields,separate source branches
+Identity,MetroPT APU,synthetic assets,direct record-level joins invalid

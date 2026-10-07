@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+.pytest_cache/
+.cache/
+data/raw/*.csv
+data/raw/*.zip
+data/raw/*.parquet
+data/processed/*.parquet
+archive/
+results/kg/*.graphml
+results/kg/edges.csv
+results/kg/text/edges.csv
+docs/execution_log.json
+
+# Local credentials and editor settings
+.env
+.env.*
+!.env.example
+.aws/
+.codex/
+.agents/
+.vscode/
+.idea/
+*.pem
+*.key

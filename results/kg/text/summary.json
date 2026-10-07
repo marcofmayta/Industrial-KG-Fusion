@@ -1,0 +1,8 @@
+{
+  "connected_components": 1,
+  "edges": 554016,
+  "largest_component": 58311,
+  "max_degree": 33314,
+  "median_degree": 9.0,
+  "nodes": 58311
+}

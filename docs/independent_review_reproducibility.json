@@ -1,0 +1,13 @@
+{
+  "artifacts_checked": 6,
+  "candidate_requires_nonempty_action": true,
+  "identical": true,
+  "sha256": {
+    "blinded_pairs.csv": "22ceeae192a16003ffbeb05faf462bdd039f31ca9df5b81c37c153b9bc67387a",
+    "identity_audit.csv": "7fb39d1cb2b7ae3d8b04701121206b8d2c5902420cbde3a3edc4cc68ce58ed5d",
+    "identity_review.csv": "0748bb5fe1107e7cc981eb0f5db57d50d43e6ad1e80a2f2fcccdb5c6fbf4dedf",
+    "identity_summary.csv": "12e0bd500abf0d2289482de92b78072937178a8d887b51b4bd2f3825f4529132",
+    "protocol.json": "bb96234165e56b5af0c6c40c0bd3876bd7a98069380817e73504fc1d493b28dc",
+    "ranking_key_do_not_show_reviewers.csv": "f1e30008c7a9bd22cb7e57ad60f749a1428e924ba42860be092be3390bee5d9f"
+  }
+}

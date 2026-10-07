@@ -1,0 +1,9 @@
+{
+  "entities": 410689,
+  "exact_duplicates_removed": 1150,
+  "identifier_concordance": 0.006530194472876152,
+  "input_records": 50000,
+  "manual_review": "100 sampled records prepared; annotation pending",
+  "records": 48850,
+  "unique_valid_assets": 9400
+}

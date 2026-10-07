@@ -1,0 +1,56 @@
+{
+  "cohort_records": 12253,
+  "evidence_status": "diagnostic only, including group-disjoint results",
+  "failure_labels_derived_from_query_text": true,
+  "next_question": "Does retrieval still carry information about a structured asset target after identifier and template controls?",
+  "random_equipment_overlap": 994,
+  "random_exact_text_overlap": 204,
+  "random_template_overlap": 55,
+  "splits": [
+    {
+      "candidate_records": 9802,
+      "equipment_overlap": 994,
+      "exact_text_overlap": 204,
+      "failure_nodes_in_features": false,
+      "full_test_records": 2451,
+      "query_records": 1500,
+      "representation_fit": "candidate records only",
+      "row_overlap": 0,
+      "split": "Random",
+      "template_overlap": 55,
+      "test_classes": 6,
+      "train_classes": 6,
+      "unsupported_queries": 0
+    },
+    {
+      "candidate_records": 9571,
+      "equipment_overlap": 792,
+      "exact_text_overlap": 0,
+      "failure_nodes_in_features": false,
+      "full_test_records": 2682,
+      "query_records": 1500,
+      "representation_fit": "candidate records only",
+      "row_overlap": 0,
+      "split": "Template-disjoint",
+      "template_overlap": 0,
+      "test_classes": 6,
+      "train_classes": 6,
+      "unsupported_queries": 0
+    },
+    {
+      "candidate_records": 9822,
+      "equipment_overlap": 0,
+      "exact_text_overlap": 199,
+      "failure_nodes_in_features": false,
+      "full_test_records": 2431,
+      "query_records": 1500,
+      "representation_fit": "candidate records only",
+      "row_overlap": 0,
+      "split": "Equipment-disjoint",
+      "template_overlap": 52,
+      "test_classes": 6,
+      "train_classes": 6,
+      "unsupported_queries": 0
+    }
+  ]
+}

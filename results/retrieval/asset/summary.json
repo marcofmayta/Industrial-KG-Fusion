@@ -1,0 +1,71 @@
+{
+  "answerable_queries": 1500,
+  "bootstrap_repetitions": 500,
+  "bootstrap_unit": "asset",
+  "candidate_assets": 5128,
+  "candidate_records": 37034,
+  "checks_passed": 8,
+  "checks_total": 8,
+  "cohort_assets": 5128,
+  "cohort_records": 38534,
+  "conflicting_work_orders_excluded": 10,
+  "median_candidate_pool": 36799.5,
+  "median_positives": 6.0,
+  "metrics": [
+    {
+      "hit@1": 0.002,
+      "hit@10": 0.02266666666666667,
+      "hit@20": 0.044,
+      "hit@5": 0.01,
+      "hit@50": 0.07533333333333334,
+      "method": "Graph context full",
+      "mrr@10": 0.0060489417989417985,
+      "mrr@50": 0.008430086352089762
+    },
+    {
+      "hit@1": 0.0013333333333333333,
+      "hit@10": 0.020666666666666667,
+      "hit@20": 0.03933333333333333,
+      "hit@5": 0.008666666666666666,
+      "hit@50": 0.07666666666666666,
+      "method": "Graph context without failure_mode",
+      "mrr@10": 0.004922751322751323,
+      "mrr@50": 0.007333715260597778
+    },
+    {
+      "hit@1": 0.0013333333333333333,
+      "hit@10": 0.03333333333333333,
+      "hit@20": 0.048,
+      "hit@5": 0.010666666666666666,
+      "hit@50": 0.11133333333333334,
+      "method": "Hybrid RRF",
+      "mrr@10": 0.006875132275132275,
+      "mrr@50": 0.009784974517144773
+    },
+    {
+      "hit@1": 0.004,
+      "hit@10": 0.03333333333333333,
+      "hit@20": 0.066,
+      "hit@5": 0.016666666666666666,
+      "hit@50": 0.13533333333333333,
+      "method": "Masked TF-IDF",
+      "mrr@10": 0.010197619047619047,
+      "mrr@50": 0.014558597102791523
+    },
+    {
+      "hit@1": 0.00022171161340337741,
+      "hit@10": 0.002213980403451674,
+      "hit@20": 0.004421010515351157,
+      "hit@5": 0.001107860763517649,
+      "hit@50": 0.011000681665658997,
+      "method": "Random expectation",
+      "mrr@10": 0.0006488934496156386,
+      "mrr@50": 0.000994368073070676
+    }
+  ],
+  "query_assets": 1246,
+  "query_records": 1500,
+  "representation": "candidate-fitted TF-IDF and one-hop entity context; known-asset record retrieval",
+  "scope": "synthetic known-asset retrieval only; no real-plant or cross-source validation",
+  "valid_assets_before_cohort": 9400
+}

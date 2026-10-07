@@ -1,0 +1,4 @@
+split,candidate_records,query_records,full_test_records,train_classes,test_classes,unsupported_queries,exact_text_overlap,template_overlap,equipment_overlap,row_overlap,representation_fit,failure_nodes_in_features
+Random,9802,1500,2451,6,6,0,204,55,994,0,candidate records only,False
+Template-disjoint,9571,1500,2682,6,6,0,0,0,792,0,candidate records only,False
+Equipment-disjoint,9822,1500,2431,6,6,0,199,52,0,0,candidate records only,False

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revisión técnica independiente</title>
+<style>
+body{font:17px system-ui;margin:0;background:#f2f5f7;color:#192e38}main{max-width:1050px;margin:auto;padding:28px}h1{font-size:26px}section{background:white;border:1px solid #ccd8de;border-radius:10px;padding:20px;margin:18px 0}.columns{display:grid;grid-template-columns:1fr 1fr;gap:18px}p{line-height:1.6;white-space:pre-wrap}label{display:block;margin:14px 0}select,input,textarea,button{font:inherit;padding:10px;border:1px solid #9bacb5;border-radius:6px}textarea{width:95%;min-height:80px}button{cursor:pointer;background:#e4edf1;margin:5px}button.primary{background:#174c61;color:white}#status{font-weight:600}small{display:block;color:#46606d;margin:10px 0}@media(max-width:700px){.columns{grid-template-columns:1fr}}
+</style>
+<main><h1>Revisión técnica independiente</h1>
+<p>Juzga la utilidad de la intervención para el problema consultado. No se muestran el método ni la posición. Las anotaciones requieren criterio independiente.</p>
+<section><label>Grupo de revisión <select id="split"><option value="development">Desarrollo</option><option value="confirmation">Confirmación</option></select></label>
+<small>Completa las decisiones de desarrollo antes de abrir confirmación. Estos grupos pertenecen al mismo corpus sintético auditado.</small>
+<label>Revisor <input id="reviewer" placeholder="Identificador del especialista"></label>
+<button id="export">Descargar anotaciones CSV</button><label>Recuperar anotaciones <input id="import" type="file" accept=".json"></label><button id="backup">Descargar respaldo JSON</button>
+<small>El navegador guarda un borrador local cuando puede. Descarga respaldos para evitar pérdidas y conserva archivos separados por revisor. La página funciona sin conexión.</small><div id="status" role="status"></div></section>
+<div class="columns"><section><h2>Problema consultado</h2><p id="query"></p></section><section><h2>Caso candidato</h2><p id="candidate"></p><h3>Intervención realizada</h3><p id="action"></p></section></div>
+<section><div id="position"></div><label>Relevancia <select id="relevance"><option value="">Pendiente</option><option value="0">0 — Irrelevante</option><option value="1">1 — Relacionado, intervención no reutilizable</option><option value="2">2 — Útil con adaptación</option><option value="3">3 — Directamente útil</option></select></label>
+<label>¿Hay incompatibilidad evidente al trasladar esta intervención? <select id="unsafe"><option value="">Pendiente</option><option value="yes">Sí</option><option value="no">No</option><option value="uncertain">No puedo determinarlo</option></select></label>
+<label>Justificación <textarea id="rationale" placeholder="Equipo, componente, condición y restricciones"></textarea></label>
+<button id="previous">Anterior</button><button id="next" class="primary">Guardar y siguiente</button><button id="pending">Ir al siguiente pendiente</button></section></main>
+<script>
+'use strict';
+const pairs=__PAIRS__;
+const $=id=>document.getElementById(id);
+const storageKey='industrial-review-v1-'+pairs.map(p=>p.pair_id+':'+p.query_id+':'+p.candidate_id).join('|');
+let annotations={},index=0;
+try{annotations=JSON.parse(localStorage.getItem(storageKey)||'{}')}catch(e){}
+function subset(){return pairs.filter(p=>p.review_split===$('split').value)}
+function complete(a){return a&&['0','1','2','3'].includes(a.relevance)&&['yes','no','uncertain'].includes(a.unsafe)&&a.reviewer.trim()}
+function persist(){try{localStorage.setItem(storageKey,JSON.stringify(annotations))}catch(e){$('status').textContent='No se pudo guardar el borrador local. Descarga un respaldo.'}}
+function save(){const p=subset()[index];if(!p)return;annotations[p.pair_id]={relevance:$('relevance').value,unsafe:$('unsafe').value,reviewer:$('reviewer').value.trim(),rationale:$('rationale').value};persist()}
+function render(){const list=subset();index=Math.max(0,Math.min(index,list.length-1));const p=list[index];const a=annotations[p.pair_id]||{};
+for(const [id,field] of [['query','query_problem'],['candidate','candidate_problem'],['action','candidate_action']])$(id).textContent=p[field];
+for(const id of ['relevance','unsafe','rationale'])$(id).value=a[id]||'';
+if(a.reviewer)$('reviewer').value=a.reviewer;
+$('position').textContent=`Par ${index+1} de ${list.length} · ${p.pair_id}`;
+$('status').textContent=`Completados: ${list.filter(p=>complete(annotations[p.pair_id])).length}/${list.length} en este grupo.`}
+function download(name,text,type){const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function csv(value){return '"'+String(value??'').replaceAll('"','""')+'"'}
+$('next').onclick=()=>{save();if(index<subset().length-1)index++;render()};
+$('previous').onclick=()=>{save();index--;render()};
+$('pending').onclick=()=>{save();const list=subset();const next=list.findIndex((p,i)=>i>index&&!complete(annotations[p.pair_id]));index=next>=0?next:Math.max(0,list.findIndex(p=>!complete(annotations[p.pair_id])));render()};
+let currentSplit='development';
+$('split').onchange=()=>{const next=$('split').value;$('split').value=currentSplit;save();currentSplit=next;$('split').value=next;index=0;render()};
+for(const id of ['relevance','unsafe','reviewer','rationale'])$(id).onchange=()=>{save();render()};
+$('backup').onclick=()=>{save();download('review-backup.json',JSON.stringify({version:1,pairs:pairs.map(p=>[p.pair_id,p.query_id,p.candidate_id]),annotations},null,2),'application/json')};
+$('export').onclick=()=>{save();const columns=Object.keys(pairs[0]);const rows=pairs.map(p=>({...p,...(annotations[p.pair_id]||{})}));download('review-annotations.csv','\ufeff'+[columns.map(csv).join(','),...rows.map(p=>columns.map(c=>csv(p[c])).join(','))].join('\r\n'),'text/csv;charset=utf-8')};
+$('import').onchange=async event=>{try{const file=event.target.files[0];if(!file)return;const data=JSON.parse(await file.text());if(data.version!==1||JSON.stringify(data.pairs)!==JSON.stringify(pairs.map(p=>[p.pair_id,p.query_id,p.candidate_id])))throw Error('El respaldo corresponde a otro conjunto de pares');
+const allowed=new Set(pairs.map(p=>p.pair_id));for(const [id,a] of Object.entries(data.annotations)){if(!allowed.has(id)||!a||!['','0','1','2','3'].includes(a.relevance)||!['','yes','no','uncertain'].includes(a.unsafe)||typeof a.reviewer!=='string'||typeof a.rationale!=='string')throw Error('Anotaciones inválidas')}
+annotations=data.annotations;persist();render()}catch(e){$('status').textContent='No se importó el archivo: '+e.message}};
+render();
+</script></html>

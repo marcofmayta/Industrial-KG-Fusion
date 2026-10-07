@@ -1,0 +1,23 @@
+{
+  "bootstrap_repetitions": 500,
+  "bootstrap_unit": "equipment_id",
+  "diagnostic_findings_sha256": "bd9d217339af59e8387ba5d24000c35613d20e91d8f527fe29fc1f3478101daf",
+  "exclude_same_template": true,
+  "exclude_same_work_order": true,
+  "fit_representations": "candidate records only",
+  "minimum_asset_records": 4,
+  "minimum_templates_per_asset": 2,
+  "queries_without_positives": "retain in unconditional metrics; also report answerable-only metrics",
+  "query_cap": 1500,
+  "rrf_k": 60,
+  "seed": 42,
+  "selection": "no GO threshold and no tuned winner",
+  "target": "structured Equipment_ID",
+  "top_k": [
+    1,
+    5,
+    10,
+    20,
+    50
+  ]
+}

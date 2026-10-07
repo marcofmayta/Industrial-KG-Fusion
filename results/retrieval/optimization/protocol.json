@@ -1,0 +1,18 @@
+{
+  "baseline_source_sha256": "bd28a368c84c4dc3ceebfcf195c6b015b8ca058636749eb4900c147e72e7c03f",
+  "candidate_count": 35534,
+  "confirmation_queries": 1500,
+  "development_queries": 1500,
+  "exclude_same_template": true,
+  "limitations": "New query rows from an already audited synthetic dataset; not an external blind test.",
+  "methods": [
+    "word",
+    "character",
+    "graph_idf",
+    "word_character",
+    "word_graph",
+    "word_character_graph"
+  ],
+  "seed": 314159,
+  "selection_metric": "mrr@50"
+}

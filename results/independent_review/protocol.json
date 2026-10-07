@@ -1,0 +1,29 @@
+{
+  "candidate_requires_nonempty_action": true,
+  "candidates": 34878,
+  "confirmation_queries": 20,
+  "development_queries": 20,
+  "grades": {
+    "0": "irrelevant",
+    "1": "related but intervention not directly reusable",
+    "2": "useful with adaptation",
+    "3": "directly useful"
+  },
+  "k": 10,
+  "label_source": "human review, never regex-derived",
+  "limitations": "Same audited synthetic source; task measures technical relevance, not physical identity. Query does not expose its known intervention.",
+  "methods": [
+    "word",
+    "character",
+    "graph_idf"
+  ],
+  "pooled_pairs": 810,
+  "queries": 40,
+  "seed": 271828,
+  "status": "pending_independent_annotation",
+  "unsafe_values": [
+    "yes",
+    "no",
+    "uncertain"
+  ]
+}

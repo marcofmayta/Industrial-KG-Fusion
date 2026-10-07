@@ -1,0 +1,16 @@
+channel,kind,missing,unique_values,minimum,maximum
+TP2,analog,0,5257,-0.032,10.676
+TP3,analog,0,3683,0.7300000000000004,10.302
+H1,analog,0,2665,-0.0360000000000013,10.288
+DV_pressure,analog,0,2257,-0.032,9.844
+Reservoirs,analog,0,3682,0.7119999999999997,10.3
+Oil_temperature,analog,0,2462,15.400000000000006,89.05000000000001
+Motor_current,analog,0,1809,0.0199999999999995,9.295
+COMP,digital,0,2,0.0,1.0
+DV_eletric,digital,0,2,0.0,1.0
+Towers,digital,0,2,0.0,1.0
+MPG,digital,0,2,0.0,1.0
+LPS,digital,0,2,0.0,1.0
+Pressure_switch,digital,0,2,0.0,1.0
+Oil_level,digital,0,2,0.0,1.0
+Caudal_impulses,digital,0,2,0.0,1.0

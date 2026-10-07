@@ -1,0 +1,8 @@
+check,passed
+sensor events loaded,True
+text KG loaded,True
+ontology bridge exists,True
+no direct cross-dataset edges in either direction,True
+no identity relations,True
+every edge has provenance and evidence,True
+all endpoints exist,True
