@@ -1,15 +1,10 @@
-"""Prospective optimization following the exposed notebook 06 results.
 
-Never overwrite the original experiment. Select on exposed development queries,
-then evaluate once on a seeded holdout removed from the candidate index.
-"""
 import sys
 from pathlib import Path
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
 from sklearn.feature_extraction import DictVectorizer
-from sklearn.preprocessing import normalize
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))

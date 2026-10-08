@@ -1,0 +1,133 @@
+{
+  "checks": [
+    {
+      "artifact": "results/retrieval/asset/metrics.csv",
+      "computation": "group means of saved per-query metrics",
+      "passed": true,
+      "result": "All means: retrieval/asset"
+    },
+    {
+      "artifact": "results/retrieval/diagnostic/metrics.csv",
+      "computation": "group means of saved per-query metrics",
+      "passed": true,
+      "result": "All means: retrieval/diagnostic"
+    },
+    {
+      "artifact": "results/retrieval/optimization/development_metrics.csv",
+      "computation": "group means of saved per-query metrics",
+      "passed": true,
+      "result": "All means: retrieval/optimization/development"
+    },
+    {
+      "artifact": "results/retrieval/optimization/confirmation_metrics.csv",
+      "computation": "group means of saved per-query metrics",
+      "passed": true,
+      "result": "All means: retrieval/optimization/confirmation"
+    },
+    {
+      "artifact": "results/retrieval/asset/confidence_intervals.csv",
+      "computation": "src.evaluation.bootstrap_ci; 500 asset-cluster resamples, seed 42",
+      "passed": true,
+      "result": "Asset bootstrap intervals"
+    },
+    {
+      "artifact": "results/retrieval/asset/paired_differences.csv",
+      "computation": "src.evaluation.paired_comparisons",
+      "passed": true,
+      "result": "Asset paired differences"
+    },
+    {
+      "artifact": "results/retrieval/asset/lift.csv",
+      "computation": "src.evaluation.lift_intervals",
+      "passed": true,
+      "result": "Asset lift intervals"
+    },
+    {
+      "artifact": "results/retrieval/optimization/paired_differences.csv",
+      "computation": "src.evaluation.paired_comparisons",
+      "passed": true,
+      "result": "Optimization paired differences"
+    },
+    {
+      "artifact": "results/text/summary.json",
+      "computation": "count record, entity and duplicate artifacts",
+      "passed": true,
+      "result": "Text counts"
+    },
+    {
+      "artifact": "results/text/extraction_coverage.csv",
+      "computation": "presence in record_audit; not extraction accuracy",
+      "passed": true,
+      "result": "Entity coverage"
+    },
+    {
+      "artifact": "results/independent_review/identity_summary.csv",
+      "computation": "group identity_audit records",
+      "passed": true,
+      "result": "Identity strata"
+    },
+    {
+      "artifact": "results/sensor/summary.json",
+      "computation": "event rows and saved overlap indicators",
+      "passed": true,
+      "result": "Sensor event and overlap counts"
+    },
+    {
+      "artifact": "results/sensor/summary.json",
+      "computation": "candidate / eligible windows",
+      "passed": true,
+      "result": "Sensor alert fraction"
+    },
+    {
+      "artifact": "results/sensor/summary.json",
+      "computation": "sum durations and five-minute observed candidate windows",
+      "passed": true,
+      "result": "Sensor durations"
+    },
+    {
+      "artifact": "results/retrieval/asset/summary.json",
+      "computation": "count saved cohort/index/query rows and distinct labels",
+      "passed": true,
+      "result": "Asset cohort and query counts"
+    },
+    {
+      "artifact": "results/retrieval/asset/queries.csv",
+      "computation": "saved row/work-order intersection",
+      "passed": true,
+      "result": "Query index separation"
+    },
+    {
+      "artifact": "results/independent_review/protocol.json",
+      "computation": "count overlap periods and unique review pairs",
+      "passed": true,
+      "result": "Alert overlap and review count"
+    },
+    {
+      "artifact": "results/data_manifest.json",
+      "computation": "Parquet metadata against source manifest",
+      "passed": true,
+      "result": "Processed source rows: metropt3"
+    },
+    {
+      "artifact": "results/data_manifest.json",
+      "computation": "Parquet metadata against source manifest",
+      "passed": true,
+      "result": "Processed source rows: maintenance"
+    },
+    {
+      "artifact": "data/raw/maintenance_sample.parquet",
+      "computation": "streaming SHA-256 against source_snapshot.json",
+      "passed": true,
+      "result": "Raw snapshot: maintenance_sample.parquet"
+    },
+    {
+      "artifact": "data/raw/MetroPT3(AirCompressor).csv",
+      "computation": "streaming SHA-256 against source_snapshot.json",
+      "passed": true,
+      "result": "Raw snapshot: MetroPT3(AirCompressor).csv"
+    }
+  ],
+  "checks_count": 21,
+  "passed": true,
+  "scope": "Saved-artifact recomputation; does not re-run retrieval ranks or validate human labels"
+}

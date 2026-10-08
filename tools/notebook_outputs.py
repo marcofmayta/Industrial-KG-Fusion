@@ -1,4 +1,4 @@
-"""Keep machine-specific user paths out of published notebook outputs."""
+
 import re
 import nbformat
 

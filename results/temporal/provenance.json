@@ -1,0 +1,15 @@
+{
+  "adjacency_edges": 2933,
+  "candidate_windows": 9472,
+  "events": 2934,
+  "interval_semantics": "[start,end), source-local timezone unspecified; merged gaps are not inserted as observed windows",
+  "observation_reference": "zero-based row offsets in stable timestamp-sorted data/processed/metropt3.parquet",
+  "observation_sha256": "0644cf390e5f20f6d5fafe847c8be2af34512552652e14fe4ab52097e7c4fa24",
+  "raw_snapshot_manifest": "data/raw/source_snapshot.json",
+  "scope": "Chronological adjacency and observation lineage; no temporal prediction, cross-source joining or causal reasoning",
+  "source_sha256": {
+    "results/sensor/events.csv": "e6402eba51afaa757df90e753ac125a188a871906af2d5b9b9f8722926f2d022",
+    "results/sensor/window_scores.parquet": "1940265fb6b6d19abc3ed75aaf211eb276c3d0e877f4e94eb400b5db56baf3e1"
+  },
+  "version": "temporal-lineage-1"
+}

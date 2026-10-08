@@ -1,0 +1,46 @@
+{
+  "introduction": {
+    "source_sha256": "cc7fe6366b6e70729f44d8cec81ed10f756396caa4be54790a2a35fc8411d82e",
+    "text": "# Industrial-KG Fusion\n\nForschungsprototyp zur Darstellung von Sensorereignissen und Wartungsaufträgen in einem Property Graph sowie zum Vergleich von Textsuche und Graphkontext. Er nutzt öffentliche Daten und bewahrt die negativen Befunde, die zur strengeren Evaluation geführt haben."
+  },
+  "research-question": {
+    "source_sha256": "2ca471ea74ac606730f343994ae9d87b2cb31c387aeaa9e4a3acb49277a0564e",
+    "text": "## Forschungsfrage\n\nLiefert der Entitätskontext des Graphen zusätzliche Information gegenüber einer Textreferenz, wenn Kennungen und Textvorlagen kontrolliert werden? Das aktuelle Experiment untersucht synthetische Anlagenkennungen, keine verifizierte physische Identität."
+  },
+  "architecture": {
+    "source_sha256": "fc5a14bc5e1a19bbb2d932ed2be66ae50b8287d9359cd8e5784f815db2a6e23b",
+    "text": "## Architektur\n\n{{architecture}}\n\nDie Zweige teilen konzeptuelle Klassen, keine Maschinenidentität. Die Suche nutzt den Wartungszweig; ein Relevanzbezug zwischen Sensoren und Aufträgen ist nicht validiert. Siehe [Architektur](docs/ARCHITECTURE.md) und [Schema](docs/KG_SCHEMA.md)."
+  },
+  "data": {
+    "source_sha256": "dfb256f085f4a37eb6ea2182e6ad593473a148191993a8833dc1c3b9b380bb9c",
+    "text": "## Daten\n\n- [MetroPT-3](https://archive.ics.uci.edu/dataset/791/metropt+3+dataset): reale Sensormessungen eines Kompressors.\n- [Wartungsdatensatz](https://huggingface.co/datasets/Jvachier/industrial-maintenance-synthetic): eingefrorene Stichprobe synthetischer Aufträge.\n\nDie unabhängigen Quellen beschreiben nicht dieselben Maschinen. [Quell-Hashes](data/raw/source_snapshot.json) identifizieren die Eingaben; die genaue Wartungsstichprobe wird nicht über Git verteilt und ihre Upstream-Version ist unbekannt."
+  },
+  "pipeline": {
+    "source_sha256": "d1d85b4b762118212ed6451fcad23eca2e9f6024adfd31e2be0cf906bde9d8c1",
+    "text": "## Pipeline\n\n- **00–04:** Datenprüfung, Ereignis- und Entitätsextraktion, Aufbau der Zweige und konzeptuelle Verbindung.\n- **05:** die erste Kategoriendiagnostik zeigt eine leichte Aufgabe mit textbasierten Labels und wiederholten Vorlagen.\n- **06:** strengere Suche für bekannte Anlagen maskiert Kennungen und schließt dieselbe Zeile, denselben Auftrag und dieselbe normalisierte Vorlage aus; Repräsentationen werden nur an Kandidaten angepasst.\n- **07:** spätere Optimierung wählt anhand von Entwicklungsabfragen; die Bestätigung zeigt keinen gesicherten Gewinn.\n- **08:** Identitätsprüfung und reine Problemabfragen bereiten eine verblindete technische Relevanzprüfung vor; menschliche Labels fehlen noch."
+  },
+  "main-results": {
+    "source_sha256": "0bc62f2b6734a8660cf2d9d0cbc471240220a18296dfb43ae584ee2711fdd544",
+    "text": "## Hauptergebnisse\n\nSuche für bekannte Anlagen in Notebook 06:\n\n{{results}}\n\nGraphkontext übertrifft die Zufallserwartung, Text bleibt insgesamt stärker. Die Kombination belegt keinen Vorteil gegenüber Text: gleiches Hit@10 und niedrigeres MRR@50. Die spätere Optimierung mit Wörtern+Zeichen bestätigte keine Verbesserung.\n\nSensorereignisse überlappen alle dokumentierten Ausfallperioden bei hoher Alarmbelastung. Das ist zeitliche Abdeckung, keine validierte Diagnose oder Frühwarnung. Die Quellenintegration ist konzeptuell.\n\n[Vollständige Ergebnisse, Intervalle und zwölf Hypothesen](docs/RESULT_TRACEABILITY.md) · [Forschungsrahmen und nächste Fragen](docs/RESEARCH_POSITIONING.md)."
+  },
+  "reproducibility": {
+    "source_sha256": "8d5575b1143787a59057393eed47f3907bc49ae3b3c72cd0d7523959cf2ceaf1",
+    "text": "## Reproduzierbarkeit\n\nPython 3.12 im Stammverzeichnis verwenden. Vor Vorprüfung oder vollständiger Ausführung die genauen Eingabedateien wiederherstellen:\n\n{{commands}}\n\nTests und Prüfung gespeicherter Artefakte benötigen keine Rohdaten. Die vollständige Ausführung verlangt beide dokumentierten Hashes und lehnt Ersatzdateien ab. `python tools/run_pipeline.py --verify` wiederholt die Notebooks in getrennten frischen Kernels und vergleicht Artefakte. Vor dem Überschreiben werden frühere Ergebnisse lokal archiviert. [Datenzugang und Prüfungsumfang](docs/REPRODUCIBILITY.md) unterscheidet historische Wiederholungen von aktuellen Prüfungen."
+  },
+  "relevance-review": {
+    "source_sha256": "213dece3020db39fc8cf371df96409abadeb65243db8c05e6c0e0875f8e1b6c2",
+    "text": "## Relevanzprüfung\n\n[Offline-Prüfseite](review/index.html) öffnen. Sie verbirgt Methode und Rang und exportiert Annotationen. Dateien der Prüfenden getrennt von generierten Vorlagen speichern; erneute Generierung überschreibt Vorlagen. Stufen: 0 irrelevant, 1 verwandt, aber nicht wiederverwendbar, 2 mit Anpassung nützlich und 3 unmittelbar nützlich. Unverträglichkeit, prüfende Person und Begründung erfassen; Entwicklung vor Bestätigung prüfen.\n\n{{review}}\n\nDie Auswertung verlangt sämtliche unveränderten Originalpaare der gewählten Gruppe. Menschliche Relevanz- und Sicherheitsannotationen stehen noch aus."
+  },
+  "limitations": {
+    "source_sha256": "528f8ad47e7d3525dc56aef4c861474111de3d00574d2e75e1a166aaf6e803ad",
+    "text": "## Einschränkungen\n\n- Synthetische Aufträge weisen erhebliche Unterschiede zwischen strukturierten und textlichen Identitäten auf.\n- Diagnose-Labels stammen aus dem Text; Extraktion und technische Relevanz benötigen menschliche Prüfung.\n- Gemeinsame physische Kennungen fehlen; Alarmspezifität und Vorwarnzeit sind nicht validiert.\n- Die Suche nutzt direkte Entitätsmerkmale, kein Graphlernen; verfügbare Information variiert zwischen Repräsentationen.\n- Unsicherheit gilt für einen festen Korpus und feste Seeds; Vergleiche sind explorativ und ohne Multiplizitätskorrektur.\n- Vollständige öffentliche Reproduktion erfordert die historische Wartungsstichprobe. Softwarelizenz und Weiterverteilung sind ungeklärt.\n\nSiehe [Evaluationsprotokoll](results/retrieval/asset/protocol.json)."
+  },
+  "repository-structure": {
+    "source_sha256": "1355b3b05f0043715105c11e0ed585a38aac6398f325d9541c1a3217ebbc443a",
+    "text": "## Repository-Struktur\n\n{{structure}}\n\nGroße Rohdaten, Graphexporte, Caches und lokale Archive sind von Git ausgeschlossen."
+  },
+  "author": {
+    "source_sha256": "5baa2591126653841c8300a7690c53dd9789f3eb9dcf1fd3f2a4b8244a585d21",
+    "text": "## Autor\n\nMarco Fidel Mayta Quispe  \nDoktorand im direkten Promotionsprogramm  \nICMC — Universität São Paulo"
+  }
+}

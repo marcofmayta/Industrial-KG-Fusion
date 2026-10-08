@@ -63,7 +63,7 @@ def reciprocal_rank_fusion(rankings, k=60):
     scores = np.zeros(max(pool, default=-1) + 1)
     for ranking in rankings:
         scores[ranking] += 1 / (k + np.arange(1, len(ranking) + 1))
-    # The first ranking already uses a label-independent tie order.
+
     return pool[np.argsort(-scores[pool], kind="stable")]
 
 
@@ -76,7 +76,7 @@ def rank_candidates(candidate_matrices, query_matrices, candidates, queries, exc
     templates = candidates["template"].to_numpy()
     rankings = [[] for _ in candidate_matrices]
     hybrids, audit = [], []
-    # Blocks bound memory without limiting the candidate pool.
+
     for start in range(0, len(queries), 32):
         stop = min(start + 32, len(queries))
         scores = [(q[start:stop] @ c.T).toarray() for c, q in zip(candidate_matrices, query_matrices)]
@@ -90,7 +90,7 @@ def rank_candidates(candidate_matrices, query_matrices, candidates, queries, exc
                 ranking = pool[np.argsort(-matrix[offset, pool], kind="stable")]
                 current.append(ranking)
                 rankings[method].append(ranking[:50])
-            # Fuse complete eligible rankings, then retain the evaluated top 50.
+
             hybrids.append(reciprocal_rank_fusion([current[0], current[-1]])[:50])
             audit.append(dict(query_id=int(query.row_id), n_candidates=len(pool),
                               self_matches=int((candidate_rows[pool] == query.row_id).sum()),

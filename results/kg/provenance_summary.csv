@@ -1,0 +1,11 @@
+source_dataset,provenance,relation_origin,edges
+maintenance,dataset membership,deterministic_membership,48613
+maintenance,rule-based lexical extraction,lexical_extraction,410689
+maintenance,structured field,observed_field,143327
+metropt3,UCI dataset metadata,dataset_metadata,1
+metropt3,dataset metadata,dataset_metadata,1
+metropt3,results/sensor/events.csv,deterministic_sensor_event,19191
+metropt3,sensor schema,dataset_metadata,15
+ontology,manual industrial class hierarchy,conceptual_mapping,4
+ontology,manual industrial class mapping,conceptual_mapping,9
+ontology,manual sensor taxonomy,conceptual_mapping,15

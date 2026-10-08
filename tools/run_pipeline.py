@@ -1,6 +1,4 @@
-"""Execute notebooks in clean kernels and optionally compare two complete runs."""
 import argparse
-import json
 import os
 from pathlib import Path
 import sys
@@ -13,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.data import sha256, write_json
 from tools.notebook_outputs import sanitize_outputs
+from tools.preflight import check_inputs
+from tools.result_history import snapshot_results,record_changes
 
 
 def fingerprints():
@@ -41,10 +41,11 @@ def run():
         elapsed = time.monotonic() - start
         execution.append({"notebook": path.name, "status": "passed", "seconds": round(elapsed, 2)})
         print(f"Passed {path.name} ({elapsed:.1f}s)", flush=True)
-    from tools.automatic_relevance_review import main as automatic_screen
     from tools.build_review_app import main as build_review
-    automatic_screen()
     build_review()
+    from tools.research_audit import verify_results,build_supplements
+    verify_results()
+    build_supplements()
     if len(execution) != 9:
         raise RuntimeError("Expected nine canonical notebooks, including optimization and independent review.")
     return execution
@@ -61,11 +62,22 @@ def main():
     os.environ["JUPYTER_RUNTIME_DIR"] = str(ROOT / ".cache/jupyter")
     (ROOT / ".cache/ipython").mkdir(parents=True, exist_ok=True)
     (ROOT / ".cache/jupyter").mkdir(parents=True, exist_ok=True)
-    first = run()
+    inputs=check_inputs(ROOT)
+    if not all(row['hash_matches'] for row in inputs):
+        raise RuntimeError('Exact source snapshots unavailable or changed. Run python tools/preflight.py first.')
+    snapshot=snapshot_results(ROOT)
+    try:
+        first = run()
+    finally:
+        record_changes(ROOT,snapshot,'Pipeline execution; original result files preserved before computation, including partial runs')
     reference = fingerprints()
     write_json(ROOT / "docs/execution_log.json", {"runs": [first]})
     if args.verify:
-        second = run()
+        second_snapshot=snapshot_results(ROOT)
+        try:
+            second = run()
+        finally:
+            record_changes(ROOT,second_snapshot,'Second verification execution; first-run values preserved before recomputation')
         repeated = fingerprints()
         changed = [path for path in sorted(set(reference) | set(repeated)) if reference.get(path) != repeated.get(path)]
         verification = {"runs": 2, "clean_kernel_per_notebook": True,

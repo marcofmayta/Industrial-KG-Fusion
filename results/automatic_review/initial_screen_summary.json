@@ -1,6 +1,0 @@
-{
-  "initial_candidates_missing_interventions": 353,
-  "initial_pairs": 727,
-  "initial_screen_is_not_independent_validation": true,
-  "reason_for_candidate_filter": "Solution retrieval requires a documented candidate intervention."
-}

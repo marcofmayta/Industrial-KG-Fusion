@@ -1,4 +1,4 @@
-"""Build an offline annotation page without exposing methods or ranks."""
+
 import json
 from pathlib import Path
 import pandas as pd

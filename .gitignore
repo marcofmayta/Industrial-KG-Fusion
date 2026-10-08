@@ -14,14 +14,12 @@ results/kg/edges.csv
 results/kg/text/edges.csv
 docs/execution_log.json
 
-# Local credentials and editor settings
 .env
 .env.*
 !.env.example
 .aws/
-.codex/
-.agents/
 .vscode/
 .idea/
 *.pem
 *.key
+*.part

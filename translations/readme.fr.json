@@ -1,0 +1,46 @@
+{
+  "introduction": {
+    "source_sha256": "cc7fe6366b6e70729f44d8cec81ed10f756396caa4be54790a2a35fc8411d82e",
+    "text": "# Industrial-KG Fusion\n\nPrototype de recherche pour représenter des événements de capteurs et des dossiers de maintenance dans un graphe de propriétés, puis comparer recherche textuelle et contexte du graphe. Il utilise des données publiques et conserve les résultats négatifs qui ont guidé l’évaluation."
+  },
+  "research-question": {
+    "source_sha256": "2ca471ea74ac606730f343994ae9d87b2cb31c387aeaa9e4a3acb49277a0564e",
+    "text": "## Question de recherche\n\nLe contexte des entités du graphe apporte-t-il une information utile au-delà d’une référence textuelle, après contrôle des identifiants et des modèles de texte ? L’expérience actuelle utilise des étiquettes d’actifs synthétiques, sans identité physique vérifiée."
+  },
+  "architecture": {
+    "source_sha256": "fc5a14bc5e1a19bbb2d932ed2be66ae50b8287d9359cd8e5784f815db2a6e23b",
+    "text": "## Architecture\n\n{{architecture}}\n\nLes branches partagent des classes conceptuelles, pas l’identité des machines. La recherche utilise la maintenance ; aucun lien de pertinence entre capteurs et ordres n’est validé. Voir [architecture](docs/ARCHITECTURE.md) et [schéma](docs/KG_SCHEMA.md)."
+  },
+  "data": {
+    "source_sha256": "dfb256f085f4a37eb6ea2182e6ad593473a148191993a8833dc1c3b9b380bb9c",
+    "text": "## Données\n\n- [MetroPT-3](https://archive.ics.uci.edu/dataset/791/metropt+3+dataset) : mesures réelles de capteurs d’un compresseur.\n- [Dataset de maintenance](https://huggingface.co/datasets/Jvachier/industrial-maintenance-synthetic) : échantillon figé d’ordres synthétiques.\n\nCes sources indépendantes ne décrivent pas les mêmes machines. Les [empreintes des sources](data/raw/source_snapshot.json) identifient les entrées ; l’échantillon exact de maintenance n’est pas distribué dans Git et sa révision upstream est inconnue."
+  },
+  "pipeline": {
+    "source_sha256": "d1d85b4b762118212ed6451fcad23eca2e9f6024adfd31e2be0cf906bde9d8c1",
+    "text": "## Pipeline\n\n- **00–04** : audit, extraction des événements et entités, construction des branches et lien conceptuel.\n- **05** : le diagnostic initial révèle une tâche facile, avec des étiquettes dérivées du texte et des modèles répétés.\n- **06** : recherche plus stricte pour des actifs connus : identifiants masqués, exclusion de la même ligne, du même ordre et du même modèle normalisé ; représentations ajustées uniquement aux candidats.\n- **07** : l’optimisation ultérieure sélectionne sur les requêtes de développement ; la confirmation n’établit pas de gain.\n- **08** : audit d’identité et requêtes limitées au problème préparent une revue technique en aveugle ; les annotations humaines restent à faire."
+  },
+  "main-results": {
+    "source_sha256": "0bc62f2b6734a8660cf2d9d0cbc471240220a18296dfb43ae584ee2711fdd544",
+    "text": "## Résultats principaux\n\nRecherche pour des actifs connus dans le notebook 06 :\n\n{{results}}\n\nLe contexte du graphe dépasse l’attente aléatoire, mais le texte reste globalement plus fort. La combinaison n’établit aucun avantage sur le texte : Hit@10 identique et MRR@50 inférieur. L’optimisation ultérieure mots+caractères n’a pas confirmé d’amélioration.\n\nLes événements recouvrent toutes les périodes de panne documentées, avec une forte charge d’alertes. Il s’agit de couverture temporelle, pas d’un diagnostic ou d’une alerte précoce validés. L’intégration entre sources est conceptuelle.\n\n[Résultats complets, intervalles et douze hypothèses](docs/RESULT_TRACEABILITY.md) · [Portée et prochaines questions](docs/RESEARCH_POSITIONING.md)."
+  },
+  "reproducibility": {
+    "source_sha256": "8d5575b1143787a59057393eed47f3907bc49ae3b3c72cd0d7523959cf2ceaf1",
+    "text": "## Reproductibilité\n\nUtiliser Python 3.12 depuis la racine. Restaurer les entrées exactes avant les contrôles préalables ou l’exécution complète :\n\n{{commands}}\n\nLes tests et la vérification des artefacts sauvegardés peuvent fonctionner sans données brutes. L’exécution complète exige les deux empreintes documentées et refuse les substitutions. `python tools/run_pipeline.py --verify` répète les notebooks dans des noyaux propres distincts et compare les artefacts. Les résultats précédents sont archivés localement avant remplacement. [Accès aux données et portée des vérifications](docs/REPRODUCIBILITY.md) distingue répétitions historiques et contrôles actuels."
+  },
+  "relevance-review": {
+    "source_sha256": "213dece3020db39fc8cf371df96409abadeb65243db8c05e6c0e0875f8e1b6c2",
+    "text": "## Revue de pertinence\n\nOuvrir [la page de revue hors ligne](review/index.html). Elle masque méthode et rang et exporte les annotations. Conserver séparément les fichiers des évaluateurs : la régénération écrase les modèles. Notes : 0 non pertinent, 1 lié mais non réutilisable, 2 utile avec adaptation et 3 directement utile. Indiquer incompatibilité, évaluateur et justification ; examiner le développement avant la confirmation.\n\n{{review}}\n\nL’évaluateur exige tous les couples d’origine, sans modification, pour le groupe choisi. Les annotations humaines de pertinence et de sécurité restent à faire."
+  },
+  "limitations": {
+    "source_sha256": "528f8ad47e7d3525dc56aef4c861474111de3d00574d2e75e1a166aaf6e803ad",
+    "text": "## Limites\n\n- Les ordres synthétiques présentent d’importants désaccords entre identités structurées et textuelles.\n- Les étiquettes du diagnostic proviennent du texte ; extraction et pertinence technique nécessitent une revue humaine.\n- Les sources n’ont pas d’identifiants physiques communs ; spécificité des alertes et anticipation ne sont pas validées.\n- La recherche utilise des entités directement voisines, sans apprentissage sur graphes ; l’information disponible diffère entre représentations.\n- L’incertitude dépend d’un corpus et de graines fixes ; les comparaisons sont exploratoires, sans correction de multiplicité.\n- La reproduction publique complète exige l’échantillon historique de maintenance. Licence logicielle et redistribution restent à préciser.\n\nVoir le [protocole d’évaluation](results/retrieval/asset/protocol.json)."
+  },
+  "repository-structure": {
+    "source_sha256": "1355b3b05f0043715105c11e0ed585a38aac6398f325d9541c1a3217ebbc443a",
+    "text": "## Structure du dépôt\n\n{{structure}}\n\nDonnées brutes volumineuses, exports du graphe, caches et archives locales sont exclus de Git."
+  },
+  "author": {
+    "source_sha256": "5baa2591126653841c8300a7690c53dd9789f3eb9dcf1fd3f2a4b8244a585d21",
+    "text": "## Auteur\n\nMarco Fidel Mayta Quispe  \nDoctorant en admission directe  \nICMC — Université de São Paulo"
+  }
+}

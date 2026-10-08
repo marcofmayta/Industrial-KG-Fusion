@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "representation": "Directed property multigraph with provenance; conceptual integration of independent sources",
+  "node_types": ["work_order", "equipment", "order_type", "maintenance_type", "equipment_type", "failure_mode", "component", "maintenance_action", "asset_mention", "source_dataset", "sensor_asset", "sensor", "sensor_family", "sensor_event", "concept"],
+  "source_datasets": ["maintenance", "metropt3", "ontology"],
+  "relations": {
+    "ABOUT_EQUIPMENT": {"domain": ["work_order"], "range": ["equipment"]},
+    "HAS_ORDER_TYPE": {"domain": ["work_order"], "range": ["order_type"]},
+    "HAS_MAINTENANCE_TYPE": {"domain": ["work_order"], "range": ["maintenance_type"]},
+    "MENTIONS_EQUIPMENT_TYPE": {"domain": ["work_order"], "range": ["equipment_type"]},
+    "REPORTS_FAILURE_MODE": {"domain": ["work_order"], "range": ["failure_mode"]},
+    "INVOLVES_COMPONENT": {"domain": ["work_order"], "range": ["component"]},
+    "HAS_MAINTENANCE_ACTION": {"domain": ["work_order"], "range": ["maintenance_action"]},
+    "MENTIONS_ASSET_TOKEN": {"domain": ["work_order"], "range": ["asset_mention"]},
+    "DERIVED_FROM": {"domain": ["work_order", "sensor_asset"], "range": ["source_dataset"]},
+    "HAS_SENSOR": {"domain": ["sensor_asset"], "range": ["sensor"]},
+    "HAS_SENSOR_FAMILY": {"domain": ["sensor"], "range": ["sensor_family"]},
+    "OBSERVED_ON": {"domain": ["sensor_event"], "range": ["sensor_asset"]},
+    "PEAK_SENSOR": {"domain": ["sensor_event"], "range": ["sensor"]},
+    "INVOLVES_SENSOR": {"domain": ["sensor_event"], "range": ["sensor"]},
+    "DENOTES": {"domain": ["equipment_type"], "range": ["concept"]},
+    "SUBCLASS_OF": {"domain": ["concept"], "range": ["concept"]},
+    "INSTANCE_OF": {"domain": ["sensor_asset"], "range": ["concept"]},
+    "PRECEDES": {"domain": ["sensor_event"], "range": ["sensor_event"], "scope": "Optional temporal sidecar; immediate chronological adjacency, never causality"}
+  },
+  "provenance_origins": {
+    "structured field": "observed_field",
+    "dataset metadata": "dataset_metadata",
+    "sensor schema": "dataset_metadata",
+    "UCI dataset metadata": "dataset_metadata",
+    "dataset membership": "deterministic_membership",
+    "rule-based lexical extraction": "lexical_extraction",
+    "results/sensor/events.csv": "deterministic_sensor_event",
+    "manual sensor taxonomy": "conceptual_mapping",
+    "manual industrial class mapping": "conceptual_mapping",
+    "manual industrial class hierarchy": "conceptual_mapping"
+  },
+  "required_edge_metadata": ["source_dataset", "provenance", "evidence"],
+  "forbidden_relations": ["SAME_AS", "IDENTICAL_TO", "CAUSES", "RECOMMENDS_ACTION"],
+  "forbidden_direct_dataset_pair": ["maintenance", "metropt3"],
+  "confidence": "No calibrated numerical confidence is estimated",
+  "temporal_semantics": "Sensor event start/end are naive local-source times, intervals [start,end); timezone is not established. Maintenance dates are not used for cross-source joins."
+}

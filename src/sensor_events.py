@@ -68,7 +68,7 @@ def merge_event_windows(windows, freq=WINDOW_FREQ, gap_minutes=MERGE_GAP_MINUTES
     columns = ["event_id", "start", "end", "duration_min", "n_windows", "score_max",
                "peak_sensor", "peak_sensor_score", "active_sensors"]
     rows = []
-    # Gap is measured between the previous window end and the next window start.
+
     groups = candidates.index.to_series().diff().gt(pd.Timedelta(freq) + pd.Timedelta(minutes=gap_minutes)).cumsum()
     for number, (_, group) in enumerate(candidates.groupby(groups), start=1):
         maxima = group[[f"{s}_max" for s in ANALOG]].max()

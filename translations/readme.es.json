@@ -1,0 +1,46 @@
+{
+  "introduction": {
+    "source_sha256": "cc7fe6366b6e70729f44d8cec81ed10f756396caa4be54790a2a35fc8411d82e",
+    "text": "# Industrial-KG Fusion\n\nPrototipo de investigación para representar eventos de sensores y registros de mantenimiento en un grafo de propiedades y comparar recuperación textual y contexto del grafo. Usa datos públicos y conserva los resultados negativos que motivaron una evaluación más estricta."
+  },
+  "research-question": {
+    "source_sha256": "2ca471ea74ac606730f343994ae9d87b2cb31c387aeaa9e4a3acb49277a0564e",
+    "text": "## Pregunta de investigación\n\n¿El contexto de entidades del grafo aporta información útil para recuperar registros frente a un baseline textual, tras controlar identificadores y plantillas? El experimento actual utiliza etiquetas de activos sintéticos, no identidad física verificada."
+  },
+  "architecture": {
+    "source_sha256": "fc5a14bc5e1a19bbb2d932ed2be66ae50b8287d9359cd8e5784f815db2a6e23b",
+    "text": "## Arquitectura\n\n{{architecture}}\n\nLas ramas comparten clases conceptuales, no identidad de máquinas. La recuperación utiliza mantenimiento; no hay un vínculo de relevancia validado entre sensores y órdenes. Véanse [arquitectura](docs/ARCHITECTURE.md) y [esquema](docs/KG_SCHEMA.md)."
+  },
+  "data": {
+    "source_sha256": "dfb256f085f4a37eb6ea2182e6ad593473a148191993a8833dc1c3b9b380bb9c",
+    "text": "## Datos\n\n- [MetroPT-3](https://archive.ics.uci.edu/dataset/791/metropt+3+dataset): mediciones reales de sensores de un compresor.\n- [Dataset de mantenimiento](https://huggingface.co/datasets/Jvachier/industrial-maintenance-synthetic): muestra congelada de órdenes sintéticas.\n\nSon fuentes independientes que no describen las mismas máquinas. Los [hashes de origen](data/raw/source_snapshot.json) identifican los inputs; la muestra exacta de mantenimiento no se distribuye en Git y su revisión upstream es desconocida."
+  },
+  "pipeline": {
+    "source_sha256": "d1d85b4b762118212ed6451fcad23eca2e9f6024adfd31e2be0cf906bde9d8c1",
+    "text": "## Pipeline\n\n- **00–04:** auditoría, extracción de eventos y entidades, construcción de ramas y puente conceptual.\n- **05:** el diagnóstico inicial revela una tarea fácil con etiquetas derivadas del texto y plantillas repetidas.\n- **06:** recuperación más estricta de activos conocidos: enmascara identificadores y excluye misma fila, orden y plantilla normalizada; las representaciones se ajustan solo a candidatos.\n- **07:** la optimización posterior selecciona con consultas de desarrollo; confirmación no demuestra mejora.\n- **08:** auditoría de identidad y consultas basadas solo en el problema preparan revisión técnica ciega; faltan etiquetas humanas."
+  },
+  "main-results": {
+    "source_sha256": "0bc62f2b6734a8660cf2d9d0cbc471240220a18296dfb43ae584ee2711fdd544",
+    "text": "## Resultados principales\n\nRecuperación de activos conocidos en el notebook 06:\n\n{{results}}\n\nEl contexto del grafo supera la expectativa aleatoria, pero texto es más fuerte en conjunto. La fusión no demuestra ventaja sobre texto: igual Hit@10 y menor MRR@50. La optimización posterior con palabras+caracteres no confirmó mejora.\n\nLos eventos solapan todos los períodos de falla documentados, con una carga alta de alertas. Es cobertura temporal, no diagnóstico ni anticipación validados. La integración entre fuentes es conceptual.\n\n[Resultados completos, intervalos y doce hipótesis](docs/RESULT_TRACEABILITY.md) · [Alcance y próximas preguntas](docs/RESEARCH_POSITIONING.md)."
+  },
+  "reproducibility": {
+    "source_sha256": "8d5575b1143787a59057393eed47f3907bc49ae3b3c72cd0d7523959cf2ceaf1",
+    "text": "## Reproducibilidad\n\nUsar Python 3.12 desde la raíz. Restaurar los inputs exactos antes del preflight o la ejecución completa:\n\n{{commands}}\n\nLos tests y la verificación de artefactos guardados pueden ejecutarse sin datos raw. La ejecución completa exige ambos hashes documentados y rechaza sustituciones. `python tools/run_pipeline.py --verify` repite los notebooks con kernels limpios separados y compara artefactos. Los resultados anteriores se archivan localmente antes de reemplazarlos. [Acceso a datos y alcance de la verificación](docs/REPRODUCIBILITY.md) distingue repeticiones históricas de comprobaciones actuales."
+  },
+  "relevance-review": {
+    "source_sha256": "213dece3020db39fc8cf371df96409abadeb65243db8c05e6c0e0875f8e1b6c2",
+    "text": "## Revisión de relevancia\n\nAbrir [la página de revisión offline](review/index.html). Oculta método y posición y exporta anotaciones. Guardar por separado los archivos de cada revisor: regenerar sobrescribe las plantillas. Grados: 0 irrelevante, 1 relacionado pero no reutilizable, 2 útil con adaptación y 3 directamente útil. Registrar incompatibilidad, revisor y justificación; revisar desarrollo antes de confirmación.\n\n{{review}}\n\nEl evaluador exige todos los pares originales, sin cambios, para el grupo seleccionado. Las anotaciones humanas de relevancia y seguridad están pendientes."
+  },
+  "limitations": {
+    "source_sha256": "528f8ad47e7d3525dc56aef4c861474111de3d00574d2e75e1a166aaf6e803ad",
+    "text": "## Limitaciones\n\n- Las órdenes sintéticas presentan discordancia considerable entre identidades estructuradas y textuales.\n- Las etiquetas del diagnóstico derivan del texto; extracción y relevancia técnica necesitan revisión humana.\n- No hay identificadores físicos compartidos; especificidad de alertas y anticipación no están validadas.\n- La recuperación usa entidades de un salto, no aprendizaje sobre grafos; la información disponible difiere entre representaciones.\n- La incertidumbre depende del corpus y semillas fijos; las comparaciones son exploratorias, sin ajuste de multiplicidad.\n- La reproducción pública completa exige la muestra histórica de mantenimiento. Licencia de software y redistribución siguen pendientes.\n\nVéase el [protocolo de evaluación](results/retrieval/asset/protocol.json)."
+  },
+  "repository-structure": {
+    "source_sha256": "1355b3b05f0043715105c11e0ed585a38aac6398f325d9541c1a3217ebbc443a",
+    "text": "## Estructura del repositorio\n\n{{structure}}\n\nDatos raw grandes, exportaciones del grafo, cachés y archivos históricos locales quedan fuera de Git."
+  },
+  "author": {
+    "source_sha256": "5baa2591126653841c8300a7690c53dd9789f3eb9dcf1fd3f2a4b8244a585d21",
+    "text": "## Autor\n\nMarco Fidel Mayta Quispe  \nEstudiante de Doctorado Directo  \nICMC — Universidad de São Paulo"
+  }
+}

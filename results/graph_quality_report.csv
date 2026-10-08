@@ -1,0 +1,16 @@
+check,violations,passed
+duplicate_node_ids,0,True
+duplicate_complete_edges,0,True
+invalid_node_types,0,True
+invalid_node_sources,0,True
+invalid_edge_sources,0,True
+missing_endpoints,0,True
+unknown_relations,0,True
+forbidden_relations,0,True
+invalid_domain_or_range,0,True
+direct_cross_source_edges,0,True
+self_loops,0,True
+missing_edge_provenance,0,True
+unclassified_origins,0,True
+invalid_lexical_provenance,0,True
+invalid_event_intervals,0,True

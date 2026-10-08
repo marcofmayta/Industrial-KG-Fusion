@@ -1,0 +1,15 @@
+{
+  "artifacts_checked": 7,
+  "changed": [],
+  "identical": true,
+  "scope": "Two consecutive recomputations of seven additive reports; original rankings not rerun",
+  "sha256": {
+    "results/graph_quality_report.csv": "9adc6a34bed6ac44fe473448caefa065db167612b6ba25f42254f44c7c383621",
+    "results/graph_quality_report.json": "f00cbeda665ae03bbdd807a3b0d2b2f8abd8415790897f823629229efac6fec5",
+    "results/kg/provenance_summary.csv": "80fe45e1acd61ab95ed52672f5f8e028c9e0d5fe387da934bb4f463e632a1579",
+    "results/result_verification.json": "171d487a9e5afd887d46c32b20e86951fe10df20a70a272ba3de09bd9a73a5fc",
+    "results/temporal/event_order.csv": "72dc7f0e9da035a22b5360bdf40ad6caeb82718b5e7824d7544e073363ecf651",
+    "results/temporal/event_window_membership.csv": "e50507d0d7d2821b9b9b5b0706e00191feca844ac2dbf8dd47cb9a133d7f1f7f",
+    "results/temporal/provenance.json": "a5963ff2b897185943ec6cf5e6a873030ba83030ada0274bc2ca27e43350ad22"
+  }
+}

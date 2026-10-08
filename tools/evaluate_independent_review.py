@@ -1,4 +1,4 @@
-"""Evaluate only complete, independently annotated pooled top-ten results."""
+
 import argparse
 from pathlib import Path
 import numpy as np
@@ -11,7 +11,7 @@ from src.evaluation import cluster_bootstrap
 
 
 def validate_against_template(labels, template):
-    """Bind annotations to the immutable query/candidate pairs and split."""
+
     if labels.pair_id.duplicated().any() or set(labels.pair_id) != set(template.pair_id):
         raise ValueError('Annotations must cover exactly the original review template.')
     immutable = [c for c in template.columns if c not in ['relevance','unsafe','reviewer','rationale']]

@@ -1,4 +1,3 @@
-"""Repeat extension in a fresh notebook kernel and compare its artifacts."""
 from pathlib import Path
 import sys
 import nbformat

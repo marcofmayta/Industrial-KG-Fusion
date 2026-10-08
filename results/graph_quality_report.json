@@ -1,0 +1,38 @@
+{
+  "checks": {
+    "direct_cross_source_edges": 0,
+    "duplicate_complete_edges": 0,
+    "duplicate_node_ids": 0,
+    "forbidden_relations": 0,
+    "invalid_domain_or_range": 0,
+    "invalid_edge_sources": 0,
+    "invalid_event_intervals": 0,
+    "invalid_lexical_provenance": 0,
+    "invalid_node_sources": 0,
+    "invalid_node_types": 0,
+    "missing_edge_provenance": 0,
+    "missing_endpoints": 0,
+    "self_loops": 0,
+    "unclassified_origins": 0,
+    "unknown_relations": 0
+  },
+  "edges": 621865,
+  "input_sha256": {
+    "config/kg_schema.json": "6f534550663863e3886bf17106fbc78a4e0ad5a0d20f89fa615a7ed3c572b0f9",
+    "results/kg/edges.csv": "2e4ca1a35b3b5afc57fe4f7ca16700f04f652e1928d63fb3e151a6b0207f51d9",
+    "results/kg/nodes.csv": "b297f716c7b9f76ba62fe996eb25fc44dfed4372e7e62de2da22f69502d62fac"
+  },
+  "interpretation": "Connectivity and repeated triples can reflect shared vocabulary and separate source evidence, not physical topology.",
+  "nodes": 61278,
+  "passed": true,
+  "schema_version": "1.0",
+  "structure": {
+    "component_sizes": [
+      61278
+    ],
+    "connected_components": 1,
+    "maximum_undirected_degree": 48613,
+    "orphan_nodes": 0,
+    "repeated_triples_with_distinct_metadata": 94246
+  }
+}

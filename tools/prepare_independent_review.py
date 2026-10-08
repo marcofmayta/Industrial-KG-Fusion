@@ -1,4 +1,4 @@
-"""Build a blinded, unlabelled relevance pool and a stratified identity audit."""
+
 import sys
 from pathlib import Path
 import numpy as np
@@ -39,14 +39,14 @@ def main():
     queries = pd.read_csv(ROOT / 'results/retrieval/optimization/confirmation_queries.csv', keep_default_na=False)
     all_candidates = pd.read_csv(ROOT / 'results/retrieval/asset/candidates.csv', keep_default_na=False)
     candidates = all_candidates.loc[~all_candidates.row_id.isin(queries.row_id)].reset_index(drop=True)
-    # A solution-retrieval candidate must actually contain an intervention.
+
     action_by_id = records.set_index('row_id').action_text
     candidates = candidates.loc[action_by_id.loc[candidates.row_id].str.strip().ne('').to_numpy()].reset_index(drop=True)
     queries = queries.sample(n=40, random_state=271828).reset_index(drop=True)
     queries['review_split'] = ['development']*20 + ['confirmation']*20
     edges = pd.read_csv(ROOT / 'results/kg/edges.csv', keep_default_na=False, low_memory=False)
     by_id = records.set_index('row_id')
-    # A real user presents the problem before its intervention is known.
+
     queries['masked_text'] = by_id.loc[queries.row_id, 'problem_text'].map(mask_identifiers).to_numpy()
     matrices = []
     for kwargs in [dict(ngram_range=(1,2), min_df=2, max_df=.98, max_features=30000),
